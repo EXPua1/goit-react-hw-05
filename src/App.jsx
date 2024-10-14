@@ -1,14 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "modern-normalize";
-import "./index.css";
-import { Container, Section } from "./components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import MoviesPage from "./pages/MoviesPage";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
+import MovieCast from "./components/MovieCast/MovieCast";
+import MovieReviews from "./components/MovieReviews/MovieReviews";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
   return (
-    <Section>
-      <Container></Container>
-    </Section>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/movies" element={<MoviesPage />} />
+      <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+        <Route path="cast" element={<MovieCast />} />
+        <Route path="reviews" element={<MovieReviews />} />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} /> {/* Для 404 */}
+    </Routes>
   );
 };
 

@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  gap: 15px;
+  justify-content: start;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.btn {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.input:hover {
+  border-color: #888; /* Изменение цвета границы при наведении */
+}
+
+.input {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
