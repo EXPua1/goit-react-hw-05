@@ -11,3 +11,40 @@ export const getTrendingMovies = async (timeWindow = "day") => {
   });
   return data.results; // Возвращаем массив результатов
 };
+
+export const findMovieById = async (movieId) => {
+  const { data } = await axios.get(`/movie/${movieId}`, {
+    params: {
+      api_key: API_KEY, // Передаем API-ключ в параметрах запроса
+    },
+  });
+  return data; // Возвращаем данные о фильме
+};
+
+export const findMovieCast = async (movieId) => {
+  const { data } = await axios.get(`/movie/${movieId}/credits`, {
+    params: {
+      api_key: API_KEY, // Передаем API-ключ в параметрах запроса
+    },
+  });
+  return data.cast; // Возвращаем массив кастов
+};
+
+export const findMovieReviews = async (movieId) => {
+  const { data } = await axios.get(`/movie/${movieId}/reviews`, {
+    params: {
+      api_key: API_KEY, // Передаем API-ключ в параметрах запроса
+    },
+  });
+  return data.results; // Возвращаем массив отзывов
+};
+
+export const searchMovieByQuery = async (query) => {
+  const { data } = await axios.get(`/search/movie`, {
+    params: {
+      api_key: API_KEY, // Передаем API-ключ в параметрах запроса
+      query,
+    },
+  });
+  return data.results; // Возвращаем массив результатов
+};

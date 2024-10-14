@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getTrendingMovies } from "../movieApi";
 import MovieList from "../components/MovieList/MovieList";
+import { Container, Navigation, Section } from "../components";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]); // Инициализация как пустой массив
@@ -19,10 +20,13 @@ const HomePage = () => {
   }, []); // Запускаем функцию по монтированию
 
   return (
-    <>
-      <h1>Trending today</h1>
-      <MovieList movies={movies} />
-    </>
+    <Section>
+      <Container>
+        <Navigation />
+        <h1>Trending today</h1>
+        <MovieList movies={movies} />
+      </Container>
+    </Section>
   );
 };
 

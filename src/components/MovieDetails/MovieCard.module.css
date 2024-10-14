@@ -1,0 +1,17 @@
+.image {
+  width: 250px;
+}
+.card {
+  display: flex;
+  gap: 55px;
+}
+
+.card_container {
+  margin-bottom: 40px;
+  background-color: white;
+  height: 100%;
+}
+
+body {
+  background-color: black;
+}
