@@ -14,16 +14,15 @@ const CastList = ({ cast }) => {
           <img
             src={
               actor.profile_path
-                ? `${BASE_IMAGE_URL}${actor.profile_path}` // Генерируем URL для изображения
-                : DEFAULT_IMAGE // Используем изображение по умолчанию, если его нет
+                ? `${BASE_IMAGE_URL}${actor.profile_path}`
+                : DEFAULT_IMAGE
             }
             alt={actor.name}
-            width={100} // Укажите желаемую ширину изображения
+            width={100}
           />
           <p>
             {actor.name} as {actor.character}
           </p>{" "}
-          {/* Имя и роль актера */}
         </li>
       ))}
     </ul>
