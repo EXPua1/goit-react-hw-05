@@ -6,3 +6,6 @@
   margin: 0;
   flex-wrap: wrap;
 }
+.list img {
+  width: 100px;
+}

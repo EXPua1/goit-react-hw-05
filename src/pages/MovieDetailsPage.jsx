@@ -1,20 +1,21 @@
-import { Link, Outlet, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Container, Navigation, Section } from "../components";
+import { Link, Outlet, useParams, useLocation } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { Button, Container, Navigation, Section } from "../components";
 import { findMovieById } from "../movieApi";
 import MovieCard from "../components/MovieDetails/MovieCard";
 import MovieNavigation from "../components/MovieDetails/MovieNavigation/MovieNavigation";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null); // Инициализация состояния для хранения данных о фильме
+  const [movie, setMovie] = useState(null);
+  const location = useLocation();
+  const backLink = useRef(location.state?.from || "/movies"); // Если state.from не существует, вернуться на "/movies"
 
   useEffect(() => {
     const fetchMovie = async () => {
       try {
         const data = await findMovieById(movieId);
-        setMovie(data); // Сохраняем данные о фильме
-
+        setMovie(data);
         console.log(data);
       } catch (error) {
         console.error("Error fetching movie details:", error);
@@ -28,10 +29,11 @@ const MovieDetailsPage = () => {
     <Section>
       <Container>
         <Navigation />
+        <Button to={backLink.current}>Go back</Button>
         <div>
           <MovieCard movie={movie} />
           <MovieNavigation movie={movie} />
-          <Outlet /> {/* Для вложенных маршрутов */}
+          <Outlet />
         </div>
       </Container>
     </Section>

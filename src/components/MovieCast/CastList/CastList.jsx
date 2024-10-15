@@ -1,6 +1,7 @@
 // CastList.jsx
 import React from "react";
 import css from "./CastList.module.css";
+import defImg from "../../../../public/image/defImg.jpg";
 
 const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500"; // Базовый URL для изображений
 const DEFAULT_IMAGE = "https://via.placeholder.com/100"; // Значение по умолчанию для изображений

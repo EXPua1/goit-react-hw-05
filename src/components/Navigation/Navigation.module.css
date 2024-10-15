@@ -5,6 +5,10 @@
   padding: 0;
   margin: 0;
 }
+.list li {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 .header {
   display: flex;
   justify-content: space-between;

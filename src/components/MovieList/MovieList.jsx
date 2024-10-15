@@ -1,18 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Импортируем Link
+import { Link, useLocation } from "react-router-dom"; // Импортируем Link
 import css from "./MovieList.module.css";
+import defImg from "../../../public/image/defImg.jpg";
+
 const MovieList = ({ movies }) => {
+  const location = useLocation(); // Получаем текущую локацию
+
   return (
     <div>
       <ul className={css.list}>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              width={100}
-            />
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            {/* Оборачиваем изображение в Link */}
+            <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+              <img
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : defImg
+                }
+                alt={movie.title}
+                width={100}
+              />
+              {/* Выводим заголовок фильма под изображением, если нужно */}
+              <span>{movie.title}</span>
+            </Link>
           </li>
         ))}
       </ul>

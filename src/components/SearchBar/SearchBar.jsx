@@ -1,16 +1,21 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom"; // Импортируем необходимые хуки
 import css from "./SearchBar.module.css";
 
 const SearchBar = ({ onSearch }) => {
-  // Переименование пропа
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const query = event.target.elements.topic.value.trim(); // Удаляем пробелы
+    const query = event.target.elements.topic.value.trim();
+    onSearch(query);
     if (query) {
-      onSearch(query); // Вызываем функцию обновления запроса
+      // Обновляем URL с параметром запроса
+      navigate(`?query=${encodeURIComponent(query)}`, { replace: true }); // Используйте replace, чтобы не добавлять новый элемент в историю
       event.target.reset(); // Очищаем поле ввода
     } else {
-      alert("Please enter a movie name."); // Уведомление при пустом запросе
+      alert("Please enter a movie name.");
     }
   };
 
@@ -22,7 +27,7 @@ const SearchBar = ({ onSearch }) => {
           type="text"
           name="topic"
           placeholder="Movie name search..."
-          required // Добавление обязательного поля
+          required
         />
         <button className={css.btn} type="submit">
           Search

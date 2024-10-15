@@ -1,23 +1,34 @@
-import React from "react";
+import { React, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import MoviesPage from "./pages/MoviesPage";
-import MovieDetailsPage from "./pages/MovieDetailsPage";
-import MovieCast from "./components/MovieCast/MovieCast";
-import MovieReviews from "./components/MovieReviews/MovieReviews";
-import NotFoundPage from "./pages/NotFoundPage";
+import { LoadingPage } from "./components";
+
+// Объект для ленивой загрузки компонентов
+const LazyComponents = {
+  HomePage: lazy(() => import("./pages/HomePage")),
+  MoviesPage: lazy(() => import("./pages/MoviesPage")),
+  MovieDetailsPage: lazy(() => import("./pages/MovieDetailsPage")),
+  MovieCast: lazy(() => import("./components/MovieCast/MovieCast")),
+  MovieReviews: lazy(() => import("./components/MovieReviews/MovieReviews")),
+  NotFoundPage: lazy(() => import("./pages/NotFoundPage")),
+};
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/movies" element={<MoviesPage />} />
-      <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-        <Route path="cast" element={<MovieCast />} />
-        <Route path="reviews" element={<MovieReviews />} />
-      </Route>
-      <Route path="*" element={<NotFoundPage />} /> {/* Для 404 */}
-    </Routes>
+    <Suspense fallback={<LoadingPage />}>
+      <Routes>
+        <Route path="/" element={<LazyComponents.HomePage />} />
+        <Route path="/movies" element={<LazyComponents.MoviesPage />} />
+        <Route
+          path="/movies/:movieId"
+          element={<LazyComponents.MovieDetailsPage />}
+        >
+          <Route path="cast" element={<LazyComponents.MovieCast />} />
+          <Route path="reviews" element={<LazyComponents.MovieReviews />} />
+        </Route>
+        <Route path="*" element={<LazyComponents.NotFoundPage />} />{" "}
+        {/* Для 404 */}
+      </Routes>
+    </Suspense>
   );
 };
 
