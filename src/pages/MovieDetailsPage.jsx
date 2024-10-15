@@ -28,7 +28,6 @@ const MovieDetailsPage = () => {
   return (
     <Section>
       <Container>
-        <Navigation />
         <Button to={backLink.current}>Go back</Button>
         <div>
           <MovieCard movie={movie} />

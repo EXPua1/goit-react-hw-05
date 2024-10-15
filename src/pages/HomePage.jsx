@@ -22,7 +22,6 @@ const HomePage = () => {
   return (
     <Section>
       <Container>
-        <Navigation />
         <h1>Trending today</h1>
         <MovieList movies={movies} />
       </Container>

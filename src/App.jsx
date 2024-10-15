@@ -1,6 +1,6 @@
 import { React, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { LoadingPage } from "./components";
+import { Container, LoadingPage, Navigation, Section } from "./components";
 
 // Объект для ленивой загрузки компонентов
 const LazyComponents = {
@@ -15,6 +15,12 @@ const LazyComponents = {
 const App = () => {
   return (
     <Suspense fallback={<LoadingPage />}>
+      <Section>
+        <Container>
+          <Navigation />
+        </Container>
+      </Section>
+
       <Routes>
         <Route path="/" element={<LazyComponents.HomePage />} />
         <Route path="/movies" element={<LazyComponents.MoviesPage />} />
